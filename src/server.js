@@ -6,7 +6,7 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 const { MongoClient } = require('mongodb');
 const multer = require('multer');
 const csv = require('fast-csv');
-
+const { join } = require('path');
 
 //Setup winston logging
 const logger = winston.createLogger({
@@ -28,7 +28,12 @@ const app = express();
 const mongoServer = new MongoMemoryServer();
 
 //Setup file processing
-const upload = multer({ dest: 'tmp/' });
+const upload = multer({
+  dest: 'tmp/',
+  fileFilter: function (req, file, cb) {
+    file.mimetype === 'text/csv' ? cb(null, true) : cb(null, false)
+  }
+});
 
 const columnsMap = [
   {
