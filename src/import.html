@@ -1,12 +1,49 @@
 <html>
   <head>
-    <title>Import a CSV</title>
+    <title>Import Vehicles Data | Providers</title>
+    <style>
+      .wrapper {
+        position: absolute;
+        display: flex;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px black;
+        background: lightgray;
+        padding: 25px;
+
+        align-content: stretch;
+        justify-content: stretch;
+      }
+
+      .wrapper form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0;
+      }
+
+      .wrapper input[type="text"],
+      .wrapper .file-input,
+      .wrapper button {
+        padding: 10px;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        border: none;
+        background: white;
+        margin: 0;
+        margin-bottom: 10px
+      }
+    </style>
   </head>
   <body>
-    <div>
+    <div class="wrapper">
       <form method="post" enctype="multipart/form-data">
         <input type="text" placeholder="Provider Name" name="provider" />
-        <input type="file" name="csv" />
+        <div class="file-input">
+          <input type="file" name="csv" />
+        </div>
         <button type="submit">Import</button>
       </form>
     </div>
